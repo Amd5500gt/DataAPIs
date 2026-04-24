@@ -18,7 +18,9 @@ app.get("/",(req,res)=>{
 app.get("/data",(req,res)=>{
     try{
      
-        res.send(JSON.parse(path.join(process.cwd(), "data.json")))   // ✅ better than res.send
+const filePath = path.join(process.cwd(), "data.json")
+    const data = fs.readFileSync(filePath, "utf-8")
+    res.json(JSON.parse(data))
         console.log("success")
     }
     catch (err){
