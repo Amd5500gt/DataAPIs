@@ -2,93 +2,509 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>N11 Server 🚀</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>N11 Server 🚀 | Grocery Galaxy</title>
 
-    <!-- favicon -->
-    <link rel="icon" href="/favicon.ico">
+    <!-- favicon (emoji based) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 
     <style>
-        body {
+        * {
             margin: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03050b);
+            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
-            color: white;
-            overflow: hidden;
+            overflow-x: hidden;
+            position: relative;
+            cursor: default;
         }
 
-        .container {
+        /* animated stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+
+        /* main glassmorphism container */
+        .hero {
+            position: relative;
+            z-index: 10;
             text-align: center;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.24);
+            border-radius: 70px;
+            padding: 6rem 7rem;
+            border: 1px solid rgba(0, 255, 255, 0.219);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 30px rgba(0, 255, 255, 0.2);
+            animation: floatGlow 3s ease-in-out infinite;
+            margin: 20px;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translateY(0px); box-shadow: 0 0 20px rgba(0,255,255,0.2);}
+            50% { transform: translateY(-12px); box-shadow: 0 0 45px rgba(0,255,255,0.6);}
+            100% { transform: translateY(0px); box-shadow: 0 0 20px rgba(0,255,255,0.2);}
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 4.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD966, #FFB347, #FF6A88, #5dade2);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: 2px;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            text-shadow: 0 0 15px rgba(0,255,255,0.5);
         }
 
-        button {
-            padding: 12px 25px;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%;}
+            50% { background-position: 100% 50%;}
+            100% { background-position: 0% 50%;}
+        }
+
+  
+        .sub {
+            font-size: 1.5rem;
+            margin: 20px 0 15px;
+            color: #c0e0ff;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(0, 200, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 8px 18px;
+            border-radius: 60px;
             font-size: 1rem;
-            border: none;
-            border-radius: 25px;
-            background: #00c9ff;
-            color: black;
-            cursor: pointer;
+            border: 1px solid cyan;
+            font-weight: bold;
+        }
+
+        .grocery-icons {
+            font-size: 2rem;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: bounceIcons 2s infinite alternate;
+        }
+
+        @keyframes bounceIcons {
+            0% { transform: translateY(0px);}
+            100% { transform: translateY(-8px);}
+        }
+
+        .grocery-icons span {
+            background: rgba(0,0,0,0.5);
+            border-radius: 100px;
+            padding: 10px;
             transition: 0.3s;
+            cursor: pointer;
         }
 
-        button:hover {
-            background: #92fe9d;
-            transform: scale(1.1);
+        .grocery-icons span:hover {
+            transform: scale(1.2);
+            background: #ff9f4a;
+            box-shadow: 0 0 20px gold;
         }
 
-        /* 🚀 Rocket */
+        /* button cosmic */
+        .cosmic-btn {
+            margin-top: 30px;
+            padding: 30px 42px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(95deg, #eb3a3a, #83575d);
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 12px #00a6ff;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cosmic-btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cosmic-btn:hover:before {
+            left: 100%;
+        }
+
+        .cosmic-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 28px #4effff;
+            background: linear-gradient(95deg, #f7971e, #ffd200);
+            color: #0a0f1e;
+        }
+
+        /* multiple rockets with different delays */
+        .rocket-fleet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
         .rocket {
             position: absolute;
+            font-size: 2.8rem;
             bottom: -100px;
-            font-size: 40px;
-            animation: fly 4s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(255,100,0,0.8));
+            animation: flyRocket 5s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite;
+            opacity: 0.9;
         }
 
-        @keyframes fly {
+        /* different rocket animations */
+        .rocket1 { left: 15%; animation-duration: 4.2s; animation-delay: 0s; font-size: 3rem;}
+        .rocket2 { left: 45%; animation-duration: 5.5s; animation-delay: 1.2s; font-size: 2.2rem;}
+        .rocket3 { left: 75%; animation-duration: 3.8s; animation-delay: 0.7s; font-size: 3.5rem;}
+        .rocket4 { left: 85%; animation-duration: 6s; animation-delay: 2.5s; font-size: 2rem;}
+        .rocket5 { left: 5%; animation-duration: 4.7s; animation-delay: 3s; font-size: 2.5rem;}
+        .rocket6 { left: 60%; animation-duration: 5.2s; animation-delay: 0.3s; font-size: 3rem;}
+
+        @keyframes flyRocket {
             0% {
-                bottom: -100px;
-                left: 20%;
+                bottom: -120px;
+                transform: rotate(0deg) translateX(0);
+                opacity: 0;
             }
-            50% {
-                left: 60%;
+            15% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
             }
             100% {
                 bottom: 110%;
-                left: 40%;
+                transform: rotate(5deg) translateX(30px);
+                opacity: 0;
             }
         }
 
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+        /* super welcome text effect */
+        .super-welcome {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, gold, #ff66cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 12px;
+            font-weight: bold;
+            animation: glitch 1.2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: -2px 0 red, 2px 0 blue; opacity: 0.8;}
+            50% { text-shadow: 2px 0 cyan, -2px 0 magenta; opacity: 1;}
+            100% { text-shadow: -1px 0 lime, 1px 0 orange; opacity: 0.9;}
+        }
+
+        /* floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255,215,0,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 8s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0;}
+            20% { opacity: 0.7;}
+            80% { opacity: 0.5;}
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0;}
+        }
+
+        /* responsive */
+        @media (max-width: 680px) {
+            h1 { font-size: 2.5rem; }
+            .hero { padding: 3.8rem 2rem; }
+            .cosmic-btn { padding: 30px 28px; font-size: 1rem; }
+            
+        }
+
+        /* stats twinkle */
+        .stats {
+            margin-top: 25px;
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            font-size: 0.9rem;
+            background: #a0999955;
+            border-radius: 50px;
+            padding: 10px 20px;
+            backdrop-filter: blur(4px);
+            color: rgb(81, 247, 81);
+        }
+        .stats div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
     </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>🚀 Welcome to N11</h1>
-    <button onclick="goToData()">Go to Data Page</button>
+<!-- starfield generator -->
+<div class="stars" id="starsContainer"></div>
+
+
+
+<!-- multiple rockets launching -->
+<div class="rocket-fleet">
+    <div class="rocket rocket1">🚀✨</div>
+    <div class="rocket rocket2">🛸🍎</div>
+    <div class="rocket rocket3">🚀🥑</div>
+    <div class="rocket rocket4">🌟🍕</div>
+    <div class="rocket rocket5">🚀🧀</div>
+    <div class="rocket rocket6">💫🍇</div>
 </div>
 
-<!-- Rocket animation -->
-<div class="rocket">🚀</div>
+<div class="hero">
+    <div class="grocery-icons">
+        <span>🍎</span> <span>🥑</span> <span>🥦</span> <span>🍕</span> <span>🥛</span> <span>🍫</span> <span>🍊</span> <span>🥩</span>
+    </div>
+
+
+    <div class="super-welcome">
+        🌟  🧑‍🚀 "harjeet_vx" 🌟
+    </div>
+    
+
+
+    <button class="cosmic-btn" onclick="launchToData()">
+        🛒 EXPLORE GROCERIES → 🚀
+    </button>
+
+
+</div>
 
 <script>
-    function goToData() {
-        window.location.href = "/data";
+    // generate twinkling stars
+    function createStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        const starCount = 280;
+        for(let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            star.style.opacity = Math.random() * 0.7 + 0.2;
+            starsContainer.appendChild(star);
+        }
     }
+
+    // floating grocery particles (orbs)
+    function createParticles() {
+        const container = document.getElementById('particleContainer');
+        const particleColors = ['🍅', '🥝', '🍌', '🥕', '🍒', '🥦', '🧀', '🍞', '🥚', '🐟'];
+        for (let i = 0; i < 45; i++) {
+            const part = document.createElement('div');
+            part.classList.add('particle');
+            part.style.left = Math.random() * 100 + '%';
+            part.style.width = Math.random() * 28 + 14 + 'px';
+            part.style.height = part.style.width;
+            part.style.animationDuration = Math.random() * 9 + 5 + 's';
+            part.style.animationDelay = Math.random() * 8 + 's';
+            part.style.fontSize = (Math.random() * 24 + 16) + 'px';
+            part.style.display = 'flex';
+            part.style.alignItems = 'center';
+            part.style.justifyContent = 'center';
+            part.style.background = 'transparent';
+            part.innerHTML = particleColors[Math.floor(Math.random() * particleColors.length)];
+            part.style.textShadow = '0 0 6px gold';
+            container.appendChild(part);
+        }
+    }
+
+    // additional rocket blast effect on button
+    function launchToData() {
+        // add more rocket blast animations temporarily
+        const btn = document.querySelector('.cosmic-btn');
+        btn.style.transform = 'scale(0.95)';
+        btn.style.transition = '0.1s';
+        setTimeout(() => {
+            btn.style.transform = 'scale(1.08)';
+        }, 100);
+        
+        // create extra burst rockets for fun
+        const extraRocket = document.createElement('div');
+        extraRocket.classList.add('rocket');
+        extraRocket.style.position = 'fixed';
+        extraRocket.style.left = '50%';
+        extraRocket.style.bottom = '20px';
+        extraRocket.style.fontSize = '50px';
+        extraRocket.style.zIndex = '999';
+        extraRocket.style.animation = 'flyRocket 1.2s ease-in forwards';
+        extraRocket.innerHTML = '🚀🔥✨';
+        document.body.appendChild(extraRocket);
+        
+        setTimeout(() => {
+            window.location.href = "/data";
+        }, 380);
+    }
+
+    // dynamic neon trail for mouse? small effect
+    let canvas = document.createElement('canvas');
+    // (optional mouse trail, but keep performance)
+    
+    // make background interactive wave effect? but smooth
+    function initAnimations() {
+        createStars();
+        createParticles();
+        
+        // refresh rockets infinite loop effect is already via css
+        setInterval(() => {
+            const rockets = document.querySelectorAll('.rocket');
+            // ensure no stuck rockets - just stylistic, doesn't break
+        }, 500);
+        
+        // add extra glint to button
+        const btn = document.querySelector('.cosmic-btn');
+        btn.addEventListener('mouseenter', () => {
+            let audio = new Audio(); // silent dummy, no actual sound if we don't load, but just vibe
+        });
+    }
+    
+    // generate floating product names effect in background (extra detail)
+    function addFloatingLabels() {
+        const productNames = ["🍌 Banana", "🥑 Avocado", "🍎 Apple", "🥦 Broccoli", "🧀 Cheese", "🥛 Milk", "🍫 Choco", "🍕 Pizza", "🍊 Orange", "🥩 Steak"];
+        for(let i=0;i<18;i++) {
+            let label = document.createElement('div');
+            label.innerText = productNames[Math.floor(Math.random() * productNames.length)];
+            label.style.position = 'fixed';
+            label.style.color = 'rgba(255,240,150,0.3)';
+            label.style.fontSize = '12px';
+            label.style.fontWeight = 'bold';
+            label.style.whiteSpace = 'nowrap';
+            label.style.pointerEvents = 'none';
+            label.style.zIndex = '1';
+            label.style.left = Math.random() * 100 + '%';
+            label.style.top = Math.random() * 100 + '%';
+            label.style.opacity = Math.random() * 0.4 + 0.1;
+            label.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+            label.style.fontFamily = 'monospace';
+            document.body.appendChild(label);
+            
+            // floating animation
+            let floatDir = Math.random() * 2 - 1;
+            let speed = 0.2;
+            let posY = parseFloat(label.style.top);
+            setInterval(() => {
+                posY += 0.05;
+                if(posY > 100) posY = -2;
+                label.style.top = posY + '%';
+            }, 80);
+        }
+    }
+
+    // super effects: blast confetti-like on load
+    function blastConfetti() {
+        const container = document.body;
+        for(let i=0;i<65;i++) {
+            let conf = document.createElement('div');
+            conf.innerText = ['🚀','✨','🌟','⭐','🍎','🥑','💥','🎉'][Math.floor(Math.random()*8)];
+            conf.style.position = 'fixed';
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.top = '80%';
+            conf.style.fontSize = Math.random() * 28 + 14 + 'px';
+            conf.style.pointerEvents = 'none';
+            conf.style.opacity = '0.9';
+            conf.style.animation = `flyRocket ${Math.random() * 2 + 1.5}s ease-out forwards`;
+            conf.style.zIndex = '999';
+            container.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    window.addEventListener('load', () => {
+        initAnimations();
+        addFloatingLabels();
+        blastConfetti();  // welcome blast!
+        
+        // additional parallax effect on hero?
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 35;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 35;
+            document.querySelector('.hero').style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        document.querySelector('.hero').addEventListener('mouseleave', () => {
+            document.querySelector('.hero').style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+            document.querySelector('.hero').style.transition = '0.4s';
+        });
+    });
+    
+    // also dynamic rocket update
+    setInterval(() => {
+        let surprise = document.createElement('div');
+        surprise.style.position = 'fixed';
+        surprise.style.bottom = '0px';
+        surprise.style.left = Math.random() * 80 + 10 + '%';
+        surprise.style.fontSize = '22px';
+        surprise.style.zIndex = '9';
+        surprise.style.opacity = '0.7';
+        surprise.innerText = '🚀';
+        surprise.style.animation = 'flyRocket 2.5s linear forwards';
+        document.body.appendChild(surprise);
+        setTimeout(() => surprise.remove(), 2500);
+    }, 3200);
 </script>
 
 </body>
