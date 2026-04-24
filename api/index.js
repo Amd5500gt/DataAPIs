@@ -3,11 +3,11 @@ const fs = require("fs")
 const path = require("path")
 
 const app  = express()
-app.use(express.static(path.join(process.cwd(),"public/index.html")))
+app.use(express.static(path.join(process.cwd(),"public")))
 app.get("/",(req,res)=>{
     try{
-        const landingPage = path.join(process.cwd(),"public/index.html")
-        res.send(landingPage)   // ✅ better than res.send
+      
+        res.sendFile(path.join(process.cwd(),"public/index.html"))   // ✅ better than res.send
         console.log("success")
     }
     catch (err){
@@ -20,7 +20,7 @@ app.get("/data",(req,res)=>{
            const filePath = path.join(process.cwd(), "data.json")
         const data = fs.readFileSync(filePath, "utf-8")
 
-        res.json(JSON.parse(data))   // ✅ better than res.send
+        res.sendFile(JSON.parse(data))   // ✅ better than res.send
         console.log("success")
     }
     catch (err){
