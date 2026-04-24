@@ -1,8 +1,8 @@
 const express = require("express")
 const fs = require("fs")
-const server  = express()
+const app  = express()
 const data = fs.readFileSync("./data.json","utf-8")
-server.use("/gro",(req,res)=>{
+app.use("/",(req,res)=>{
     try{
         res.send(JSON.parse(data))
         console.log("success")
@@ -13,4 +13,4 @@ server.use("/gro",(req,res)=>{
     }
 })
 
-server.listen(3000,()=>console.log("server is started"))
+module.exports = app
