@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>N11 Server 🚀</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            background: #00c9ff;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #92fe9d;
+            transform: scale(1.1);
+        }
+
+        /* 🚀 Rocket */
+        .rocket {
+            position: absolute;
+            bottom: -100px;
+            font-size: 40px;
+            animation: fly 4s linear infinite;
+        }
+
+        @keyframes fly {
+            0% {
+                bottom: -100px;
+                left: 20%;
+            }
+            50% {
+                left: 60%;
+            }
+            100% {
+                bottom: 110%;
+                left: 40%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🚀 Welcome to N11</h1>
+    <button onclick="goToData()">Go to Data Page</button>
+</div>
+
+<!-- Rocket animation -->
+<div class="rocket">🚀</div>
+
+<script>
+    function goToData() {
+        window.location.href = "/api/data";
+    }
+</script>
+
+</body>
+</html>
