@@ -3,12 +3,11 @@ const fs = require("fs")
 const path = require("path")
 
 const app  = express()
-const landingPage = express.static(path.join(process.cwd(),"public/index.html"))
-
+app.use(express.static(path.join(process.cwd(),"public/index.html")))
 app.get("/",(req,res)=>{
     try{
- 
-        res.json(landingPage)   // ✅ better than res.send
+        const landingPage = path.join(process.cwd(),"public/index.html")
+        res.send(landingPage)   // ✅ better than res.send
         console.log("success")
     }
     catch (err){
